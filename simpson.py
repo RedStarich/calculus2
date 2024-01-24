@@ -1,7 +1,7 @@
 import math
 from sympy import symbols, lambdify, parse_expr
 
-class Trapezoid:
+class Simpson:
 
     def __init__(self):
         self.n = int(input("Enter number of divisions: "))
@@ -33,13 +33,16 @@ class Trapezoid:
             if i == 0 or i == self.n:
                 suma += func(xi)
             else:
-                suma += 2 * func(xi)
+                if i%2==1:
+                    suma += 4 * func(xi)
+                else:
+                    suma += 2 * func(xi)
 
         result = x * suma / 2
         return result
 
-trapezoid_instance = Trapezoid()
-result = trapezoid_instance.calculation()
+simpson_instance = Simpson()
+result = simpson_instance.calculation()
 
 if result is not None:
     print("The approximate definite integral is:", result)
